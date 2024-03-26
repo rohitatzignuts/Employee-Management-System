@@ -35,7 +35,7 @@ class JobPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Job $job): bool
+    public function update(User $user): bool
     {
         return in_array($user->role, ['admin', 'cmp_employee']);
     }
@@ -43,7 +43,7 @@ class JobPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Job $job): bool
+    public function delete(User $user): bool
     {
         return in_array($user->role, ['admin', 'cmp_employee']);
     }

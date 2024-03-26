@@ -22,14 +22,15 @@ use App\Http\Controllers\CompanyEmployeeController;
 Route::get('/companies',[CompanyController::class,'index']);
 Route::post('/register',[UserAuthController::class,'register']);
 Route::post('/login',[UserAuthController::class,'login']);
+Route::get('/jobs',[JobController::class,'index']);
 
 // Protected routes
 Route::group(['middleware' => ['auth:sanctum']],function () {
     Route::post('/logout',[UserAuthController::class,'logout']);
     // company routes
-    Route::get('/companies',[CompanyController::class,'index']);
     Route::get('/company/{id}',[CompanyController::class,'show']);
     Route::post('/company/create',[CompanyController::class,'store']);
+    Route::delete('/company/{id}',[CompanyController::class,'destroy']);
     Route::put('/company/update/{id}',[CompanyController::class,'update']);
     Route::get('/company/search/{name}', [CompanyController::class, 'search']);
     // company emoloyee routes
@@ -39,7 +40,6 @@ Route::group(['middleware' => ['auth:sanctum']],function () {
     Route::put('/employee/update/{id}',[CompanyEmployeeController::class,'update']);
     Route::delete('/employee/{id}',[CompanyEmployeeController::class,'destroy']);
     // jobs routes
-    Route::get('/jobs',[JobController::class,'index']);
     Route::get('/job/{id}',[JobController::class,'show']);
     Route::post('/job/create',[JobController::class,'store']);
     Route::put('/job/update/{id}',[JobController::class,'update']);
