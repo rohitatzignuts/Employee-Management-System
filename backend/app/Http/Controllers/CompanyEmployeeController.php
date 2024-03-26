@@ -15,7 +15,6 @@ class CompanyEmployeeController extends Controller
      */
     public function index()
     {
-        $this->authorize('create',CompanyEmployee::class);
         return CompanyEmployee::all();
     }
 
@@ -50,7 +49,6 @@ class CompanyEmployeeController extends Controller
      */
     public function show(string $user_id)
     {
-        $this->authorize('create',CompanyEmployee::class);
         $emp = CompanyEmployee::where('user_id', $user_id)->firstOrFail();
         return response()->json($emp);
     }

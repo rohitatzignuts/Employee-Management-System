@@ -21,6 +21,7 @@ class JobController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create',Job::class);
         $jobData = $request->validate([
             'title' => 'required|string',
             'description' => 'required|string',
@@ -50,6 +51,7 @@ class JobController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $this->authorize('update',Job::class);
         $job = Job::find($id);
         $job->update($request->all());
         return $job;
@@ -60,10 +62,18 @@ class JobController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('delete',Job::class);
         $job = Job::find($id);
         $job->delete();
         return response()->json([
             'message' => 'Job Deleted Successfully',
         ]);
+    }
+    /**
+     * Search for a name
+     */
+    public function search(string $title)
+    {
+        return job::where('title', 'like', '%'.$title.'%')->get();
     }
 }

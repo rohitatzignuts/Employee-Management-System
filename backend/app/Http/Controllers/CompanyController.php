@@ -67,4 +67,11 @@ class CompanyController extends Controller
             'message' => 'Company Deleted Successfully',
         ]);
     }
+    /**
+     * Search for a name
+     */
+    public function search(string $name)
+    {
+        return Company::where('name', 'like', '%'.$name.'%')->get();
+    }
 }

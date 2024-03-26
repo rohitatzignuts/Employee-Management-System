@@ -29,8 +29,9 @@ Route::group(['middleware' => ['auth:sanctum']],function () {
     // company routes
     Route::get('/companies',[CompanyController::class,'index']);
     Route::get('/company/{id}',[CompanyController::class,'show']);
-    Route::post('/companies/create',[CompanyController::class,'store']);
-    Route::put('/companies/update/{id}',[CompanyController::class,'update']);
+    Route::post('/company/create',[CompanyController::class,'store']);
+    Route::put('/company/update/{id}',[CompanyController::class,'update']);
+    Route::get('/company/search/{name}', [CompanyController::class, 'search']);
     // company emoloyee routes
     Route::get('/employees',[CompanyEmployeeController::class,'index']);
     Route::get('/employee/{id}',[CompanyEmployeeController::class,'show']);
@@ -43,4 +44,5 @@ Route::group(['middleware' => ['auth:sanctum']],function () {
     Route::post('/job/create',[JobController::class,'store']);
     Route::put('/job/update/{id}',[JobController::class,'update']);
     Route::delete('/job/{id}',[JobController::class,'destroy']);
+    Route::get('/job/search/{title}', [JobController::class, 'search']);
 });
